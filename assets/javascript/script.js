@@ -1,11 +1,15 @@
 
 $(".submit").click(function(event) {
   event.preventDefault();
+  // prevent empty button
   if ($("#searchTerm").val() != ""){
-    var animal = $("#searchTerm").val();
+    // trim whitespace
+    var animal = $.trim($("#searchTerm").val());
     var animalBtn = $("<button class='animal-btn m-1'>");
-    animalBtn.attr('data-animal', animal);
     animalBtn.text(animal);
+    //handle multiple words in search term 
+    animal = animal.replace(" ", "+");
+    animalBtn.attr('data-animal', animal);
     $("#btns-appear-here").append(animalBtn);
     $("#searchTerm").val("");
   }
@@ -22,11 +26,10 @@ $('#btns-appear-here').on('click', '.animal-btn', function(){
   var URLpostfix =  "&api_key=ibnIqcKEQABVaS4GlYkw32oe06vsK7Sg&limit=20";
   var queryURL = URLprefix+animal+URLpostfix;
 
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).done(function(response) {
-    console.log(response);
+// using the abbreviated format for search query
+  var xhr = $.get(queryURL);
+  xhr.done(function(response) {
+    //console.log(response);
     var results = response.data;
     for (var i = 0; i < results.length; i++) {
       var gifDiv = $("<div class='item float-left m-2'>");
