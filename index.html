@@ -4,29 +4,37 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Giphy - Search/Display</title>
-	<link rel="stylesheet" href="assets/css/style.css">
+	<!-- <link rel="stylesheet" href="assets/css/style.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+	<div class="row justify-content-center">
+		<div class="header mt-3 col-12">
+			<h1 class="">Giphy Search & Display</h1>
+		</div>
+	</div>
 	<div class="container-fluid bg">
-    <div id="btns-appear-here" class="row p-3">
-      <button class="animal-btn m-1" data-animal="cat">cat</button>
-      <button class="animal-btn m-1" data-animal="dog">dog</button>
-      <button class="animal-btn m-1" data-animal="llama">llama</button>
+    <div class="row mb-3 p-3">
+			<div id="btns-appear-here" class="col-8 p-3">
+				<button class="animal-btn m-1" data-animal="cat">cat</button>
+				<button class="animal-btn m-1" data-animal="dog">dog</button>
+				<button class="animal-btn m-1" data-animal="llama">llama</button>
+			</div>
+			<div class="col-4">
+				<form class="float-right mb-3">
+					<div class="form-group mt-3">
+						<label for="searchTerm">Add an animal</label>
+						<input type="input" class="form-control" id="searchTerm" placeholder="Enter an animal name">
+					</div>
+					<button type="submit" class="submit btn btn-primary"><span class="oi oi-magnifying-glass"></span> Search</button>
+				</form>
+			</div>
+			<div id="gifs-appear-here" class="col-12 float-left"></div>
     </div>
 		<div class="row">
-			<div class="col search-parameters">
-				<form class="float-right col-3">
-				  <div class="form-group mt-5">
-				    <label for="searchTerm">Add an animal</label>
-				    <input type="input" class="form-control" id="searchTerm" placeholder="Enter an animal name">
-				  </div>
-				  <button type="submit" class="submit btn btn-primary"><span class="oi oi-magnifying-glass"></span> Search</button>
-				</form>
-        <div id="gifs-appear-here" class="col-9"></div>
-			</div>
 		</div>
 	</div>
   <script src="assets/javascript/script.js"></script>

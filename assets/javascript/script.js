@@ -1,12 +1,14 @@
 
 $(".submit").click(function(event) {
   event.preventDefault();
-  var animal = $("#searchTerm").val();
-  var animalBtn = $("<button class='animal-btn m-1'>");
-  animalBtn.attr('data-animal', animal);
-  animalBtn.text(animal);
-  $("#btns-appear-here").append(animalBtn);
-  $("#searchTerm").val("");
+  if ($("#searchTerm").val() != ""){
+    var animal = $("#searchTerm").val();
+    var animalBtn = $("<button class='animal-btn m-1'>");
+    animalBtn.attr('data-animal', animal);
+    animalBtn.text(animal);
+    $("#btns-appear-here").append(animalBtn);
+    $("#searchTerm").val("");
+  }
 });
 
 // using a delegated event handler because the dynamically added buttons
