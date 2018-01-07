@@ -1,4 +1,12 @@
 .header {
 background-color: lightblue;
-color: white;
+}
+
+h1 {
+  color: white;
+}
+
+h5 {
+  color: dark-gray;
+  font-style: italic;
 }

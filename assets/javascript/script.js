@@ -24,7 +24,7 @@ $('#btns-appear-here').on('click', '.animal-btn', function(){
   // build queryURL
   var URLprefix = "https://api.giphy.com/v1/gifs/search?q=";
   var animal = $(this).attr("data-animal");
-  var URLpostfix =  "&api_key=ibnIqcKEQABVaS4GlYkw32oe06vsK7Sg&limit=20";
+  var URLpostfix =  "&api_key=ibnIqcKEQABVaS4GlYkw32oe06vsK7Sg&limit=10";
   var queryURL = URLprefix+animal+URLpostfix;
 
 // get gifs based on queryURL
