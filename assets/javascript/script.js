@@ -4,32 +4,36 @@ $(".submit").click(function(event) {
   // prevent empty button
   if ($("#searchTerm").val() != ""){
     // trim whitespace
-    var animal = $.trim($("#searchTerm").val());
-    var animalBtn = $("<button class='animal-btn m-1'>");
-    animalBtn.text(animal);
+    var subject = $.trim($("#searchTerm").val());
+    var gifBtn = $("<button class='gif-btn m-1'>");
+    gifBtn.text(subject);
     // handle multiple words in search term
-    animal = animal.replace(" ", "+");
-    animalBtn.attr('data-animal', animal);
-    $("#btns-appear-here").append(animalBtn);
+    // handle instances of multiple consecutive spaces within a search term
+    // this regex is from https://stackoverflow.com/questions/1981349/regex-to-replace-multiple-spaces-with-a-single-space
+    subject = subject.replace(/  +/g, ' ');
+    // replace single interior space with a concat symbol
+    subject = subject.replace(" ", "+");
+    gifBtn.attr('data-subject', subject);
+    $("#btns-appear-here").append(gifBtn);
     // clear input box
     $("#searchTerm").val("");
   }
 });
 
 // using a delegated event handler because the dynamically added buttons
-// don't have the click event bound to them.
-$('#btns-appear-here').on('click', '.animal-btn', function(){
+// don't have the click event bound to them.  http://api.jquery.com/on/
+$('#btns-appear-here').on('click', '.gif-btn', function(){
   // clear any previous gifs
   $('.item').remove();
   // build queryURL
   var URLprefix = "https://api.giphy.com/v1/gifs/search?q=";
-  var animal = $(this).attr("data-animal");
+  var subject = $(this).attr("data-subject");
   var URLpostfix =  "&api_key=ibnIqcKEQABVaS4GlYkw32oe06vsK7Sg&limit=10";
-  var queryURL = URLprefix+animal+URLpostfix;
+  var queryURL = URLprefix+subject+URLpostfix;
 
 // get gifs based on queryURL
 // using the abbreviated format for search query
-// display still images first
+// images initially display without animation
   var xhr = $.get(queryURL);
   xhr.done(function(response) {
     var results = response.data;
@@ -37,14 +41,14 @@ $('#btns-appear-here').on('click', '.animal-btn', function(){
       var gifDiv = $("<div class='item float-left m-2'>");
       var rating = results[i].rating;
       var p = $("<p>").text("Rating: " + rating);
-      var animalImage = $("<img>");
-      animalImage.attr("src", results[i].images.fixed_height_still.url);
-      animalImage.attr("data-animate", results[i].images.fixed_height.url);
-      animalImage.attr("data-still", results[i].images.fixed_height_still.url);
-      animalImage.attr("data-state", "still");
-      animalImage.attr("class", "gif");
+      var gifImage = $("<img>");
+      gifImage.attr("src", results[i].images.fixed_height_still.url);
+      gifImage.attr("data-animate", results[i].images.fixed_height.url);
+      gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+      gifImage.attr("data-state", "still");
+      gifImage.attr("class", "gif");
       gifDiv.prepend(p);
-      gifDiv.prepend(animalImage);
+      gifDiv.prepend(gifImage);
 
       $("#gifs-appear-here").prepend(gifDiv);
     }
