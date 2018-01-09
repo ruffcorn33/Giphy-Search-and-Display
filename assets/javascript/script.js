@@ -14,7 +14,7 @@ $(".submit").click(function(event) {
     // replace single interior space with a concat symbol
     subject = subject.replace(" ", "+");
     gifBtn.attr('data-subject', subject);
-    $("#btns-appear-here").append(gifBtn);
+    $("#btns-appear-here").prepend(gifBtn);
     // clear input box
     $("#searchTerm").val("");
   }
